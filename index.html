@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SudoImage</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<style>
+	@font-face {
+		src: url(segoeuib.ttf);
+		font-style: bold;
+		font-family: SegoeBro;
+	}
+	@font-face {
+		src: url(segoeuii.ttf);
+		font-style: italic;
+		font-family: SegoeBro;
+	}
+	@font-face {
+		src: url(segoeui.ttf);
+		font-family: SegoeBro;
+	}
+	* {
+		margin: 0;
+		padding: 0;
+		color: white;
+		font-family: SegoeBro;
+		outline: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+	}
+	html, body {
+		width: 100%;
+		height: 100%;
+	}
+	#settings {
+		background: #424242;
+		padding: 5px;
+		width: 80%;
+		display: block;
+		margin: auto;
+	}
+	/* The switch - the box around the slider */
+	.switch {
+	  	position: relative;
+	  	display: inline-block;
+	  	width: 50px;
+	  	height: 27px;
+	}
+	/* Hide default HTML checkbox */
+	.switch input {
+	  	opacity: 0;
+	  	width: 0;
+	  	height: 0;
+	}
+	/* The slider */
+	.slider {
+	  	position: absolute;
+	  	cursor: pointer;
+	  	top: 0;
+	  	left: 0;
+	  	right: 0;
+	  	bottom: 0;
+	  	background-color: #ccc;
+	  	-webkit-transition: .4s;
+	  	transition: .4s;
+	}
+	.slider:before {
+	  	position: absolute;
+	  	content: "";
+	  	height: 20px;
+	  	width: 20px;
+	  	left: 4px;
+	  	bottom: 4px;
+	  	background-color: white;
+	  	-webkit-transition: .4s;
+	  	transition: .4s;
+	}
+	input:checked + .slider {
+	  	background-color: #2196F3;
+	}
+	input:focus + .slider {
+	  	box-shadow: 0 0 1px #2196F3;
+	}
+	input:checked + .slider:before {
+	  	-webkit-transform: translateX(20px);
+	  	-ms-transform: translateX(20px);
+	  	transform: translateX(20px);
+	}
+	/* Rounded sliders */
+	.slider.round {
+	  	border-radius: 34px;
+	}
+	.slider.round:before {
+	  	border-radius: 50%;
+	}
+	body {
+		background: #151519;
+	}
+	#tit {
+		box-sizing: border-box;
+    	background: #5d5d5d;
+    	padding: 5px;
+    	margin-top: 0px;
+    	margin-bottom: 10px;
+    	padding-bottom: 10px;
+	}
+	.empha {
+		background: #86ff00;
+		color: black !important;
+		border-radius: 5px;
+		padding: 1px;
+	}
+	#height, #jpegqualvro {
+		width: 100%;
+	}
+	button {
+		color: black;
+	}
+	#prevTxt {
+		margin: 5px;
+	}
+	#buttonUp {
+	    background: #ffeb00;
+    	color: black;
+    	padding: 5px;
+    	margin: 5px;
+    	display: block;
+    	width: 250px;
+    	border-radius: 5px;
+    	transition: .6s;
+	}
+	#buttonUp:hover {
+		background: #ffc800;
+		width: 300px;
+		transition: .6s;
+	}
+	#setBtn {
+		background: #ff6a00;
+    	color: white;
+    	border: none;
+    	padding: 5px;
+    	border-radius: 5px;
+	}
+	#doit {
+		background: #4ed217;
+		margin: 5px;
+    	color: white;
+    	border: none;
+    	padding: 5px;
+    	border-radius: 5px;
+	}
+	#preview {
+		border: 2px solid black;
+		margin: 5px;
+	}
+	input[type=range] {
+  height: 25px;
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+  background: transparent;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #2497E3;
+  border-radius: 1px;
+  border: 0px solid #000000;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #000000;
+  border: 1px solid #2497E3;
+  height: 18px;
+  width: 18px;
+  border-radius: 25px;
+  background: #A1D0FF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #2497E3;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #2497E3;
+  border-radius: 1px;
+  border: 0px solid #000000;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #000000;
+  border: 1px solid #2497E3;
+  height: 18px;
+  width: 18px;
+  border-radius: 25px;
+  background: #A1D0FF;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #2497E3;
+  border: 0px solid #000000;
+  border-radius: 2px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-fill-upper {
+  background: #2497E3;
+  border: 0px solid #000000;
+  border-radius: 2px;
+  box-shadow: 0px 0px 0px #000000;
+}
+input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 0px 0px 0px #000000;
+  border: 1px solid #2497E3;
+  height: 18px;
+  width: 18px;
+  border-radius: 25px;
+  background: #A1D0FF;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #2497E3;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #2497E3;
+}
+#redoBtn {
+	background: #007eff;
+    border: none;
+    padding: 5px;
+    background-image: initial;
+    margin: 5px;
+    color: white;
+}
+#receiveBtn {
+	padding: 5px;
+    background: #e4ff00;
+    border: none;
+    margin: 5px;
+    border-radius: 5px;
+}
+#viewer {
+	z-index: 99999999999999999;
+	display: block;
+	width: 90%;
+	background: #2f2f2f;
+	border: 1px solid black;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 5px;
+	border-radius: 10px;
+}
+textarea {
+	color: white;
+    background: #484848;
+    border: none;
+    padding: 5px;
+    display: block;
+    /* margin: 5px; */
+    width: 90%;
+    margin: auto;
+    resize: none;
+    border-radius: 7px;
+}
+#seeBtn {
+	background: #18181f;
+    margin: 5px;
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 14px;
+}
+#close {
+	float: right;
+	border: none;
+    background: gray;
+    padding: 5px;
+    width: 20px;
+    border-radius: 10px;
+}
+#imgHead {
+	display: inline-block;
+	position: relative;
+	top: 11px;
+	left: 0px;
+}
+	</style>
+	<script type="text/javascript" src='clipboard.min.js'></script>
+	<link rel="shortcut icon" href="sudoimage.png">
+</head>
+<body>
+<div id='prev'><h1 id='tit'><img src="sudoimage.png" height='50' id='imgHead'>&nbsp;Sudo<span class='empha'>Image</span></h1>
+	<center>
+	<span id='sub'>Send and see images with free data. By Von Uyvico</span><br>
+	<label id='buttonUp'>Send an Image (Offline)
+		<input type='file' onchange='read()' id='fileToRead' style='display: none;'>
+	</label>
+	<button id='receiveBtn' onclick='receive()'>See Received Image</button>
+	<button onclick='showSettings()' id='setBtn'>Settings</button><br>
+	<button id='doit' style='display: none;' data-clipboard-text="No data" data-clipboard-action="copy">Copy Image to Clipboard</button><br></center>
+	<div id='settings' style='display: block;'>
+		Image Height: <span id='heightVal'></span><br>
+		<input type='range' id='height' min='144' max='720' value='240'><br>
+		JPEG Encoder Quality: <span id='jpegQual'>Medium</span><br>
+		<input type='range' id='jpegqualvro' min='1' max='3' value='2'><br>
+		<label class="switch">
+  			<input type="checkbox" id='prevOrNot'>
+  			<span class="slider round"></span>
+		</label><span id='prevTxt'>Preview</span>
+		<br>
+		<button id='redoBtn' onclick='read()'>Re-encode image with settings</button>
+	</div>
+</div>
+<center><canvas id='preview' style='display: none'>Your browser is not compatible with this application! Please update it.</canvas>
+
+<div id='viewer' style='display: none;'><button id='close' onclick='hideSecond()'>X</button>
+<h3>Received Image Decoder</h3><br>
+<textarea id='imgUrl' placeholder='Paste encoded text you received here...'></textarea>
+<button onclick='seeImage()' id='seeBtn'>See Image</button>
+	<div id='imageWrapper'>
+		
+	</div>
+</div>
+<div id='viewer2' style='display: none;'>
+	
+</div>
+</center>
+<script type="text/javascript">
+function lp(el){
+	return document.querySelector(el);
+}
+var clipboard = new ClipboardJS('#doit');
+
+clipboard.on('success', function(e) {
+    alert("Image has been successfully copied to clipboard. Just paste and send the text from your clipboard to your recipient. \n\nNOTE: Your recipient must have this app installed or atleast have the site saved locally on his/her device to decode the text you sent him/her, otherwise he/she will have to copy and paste the text you sent to him/her to a browser as a URL.")
+    e.clearSelection();
+});
+
+clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
+    alert("Error copying image data\nERROR Details: " + e.action + "\n" + e.trigger);
+});
+lp("#heightVal").innerHTML = lp("#height").value;
+lp("#height").oninput = function(){
+	lp("#heightVal").innerHTML = this.value;
+}
+lp("#jpegqualvro").oninput = function(){
+	if(this.value == 1){
+		var dec = 'Low';
+	}
+	else if(this.value == 2){
+		var dec = 'Medium';
+	}
+	else {
+		var dec = 'High';
+	}
+	lp("#jpegQual").innerHTML = dec;
+}
+function seeImage(){
+	var imgSrc = lp("#imgUrl").value;
+	var imgGen = document.createElement('img');
+	imgGen.src = imgSrc;
+	lp("#imageWrapper").innerHTML = imgGen.outerHTML;
+}
+toggle = 1;
+function showSettings(){
+	if(!toggle){
+		lp("#settings").style.display = 'block';
+		toggle = 1;
+	}
+	else {
+		lp("#settings").style.display = 'none';
+		toggle = 0;
+	}
+}
+function read(){
+	var reader = new FileReader();
+	var file = lp("input[type='file']").files[0];
+	reader.addEventListener('load', function(){
+		window.urlF = reader.result;
+		draw();
+	});
+	reader.readAsDataURL(file);
+
+	function draw(){
+		window.cvs = document.getElementById('preview');
+		var ctx = window.cvs.getContext('2d');
+		var imgToDraw = new Image();
+		imgToDraw.src = window.urlF;
+		imgToDraw.onload = function(){
+			origAspect = imgToDraw.width/imgToDraw.height;
+			window.cvs.width = lp("#height").value * origAspect;
+			window.cvs.height = lp("#height").value;
+			ctx.drawImage(imgToDraw, 0,0, window.cvs.width, window.cvs.height);
+			if(!lp("#prevOrNot").checked){
+				lp("#preview").style.display = 'none';
+			}
+			else {
+				lp("#preview").style.display = 'block';
+			}
+			// 0.1 low
+			// 0.5 med
+			// 1.0 high
+			var jpegencqual = lp("#jpegqualvro").value;
+			if(jpegencqual == 1){
+				jpegencqual = 0.1;
+			}
+			else if(jpegencqual == 2){
+				jpegencqual = 0.5;
+			}
+			else if(jpegencqual == 3){
+				jpegencqual = 1.0;
+			}
+			else {
+				jpegencqual = 0.5;
+			}
+			var dataURL = document.getElementById('preview').toDataURL('image/jpeg', jpegencqual);
+			lp("#doit").setAttribute('data-clipboard-text', dataURL);
+			
+lp("#doit").style.display = 'inline-block';
+		}
+	}
+}
+function receive(){
+	lp("#viewer").style.display = 'block';
+	lp("#prev").style.filter = 'blur(6px)';
+	lp("#settings").style.filter = 'blur(6px)';
+}
+function hideSecond(){
+	lp("#viewer").style.display = 'none';
+	lp("#prev").style.filter = 'blur(0px)';
+	lp("#settings").style.filter = 'blur(0px)';
+}
+</script>
+</body>
+</html>
